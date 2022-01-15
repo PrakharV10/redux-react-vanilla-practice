@@ -1,7 +1,7 @@
 import { CHANGE_COLOR } from '../constants/color';
 
 const initialState = {
-	hex: '#2563eb',
+	hex: '#4169e1',
 };
 
 export default function colorChangeReducer(state = initialState, action) {
