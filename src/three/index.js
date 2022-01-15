@@ -2,16 +2,14 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { THREEx } from './threex.domevents';
 import './style.css';
-import configureStore from '../redux/store';
 import { changeColor } from '../redux/actions/color';
+import store from '../redux';
 
 // var THREEx = {};
 // initializeDomEvents(THREE, THREEx);
 
 // console.log({initializeDomEvents})
 // console.log({THREEx})
-
-const store = configureStore();
 
 /**
  * Base
