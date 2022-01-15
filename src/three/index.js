@@ -1,6 +1,13 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { THREEx } from "./threex.domevents"
 import './style.css';
+
+// var THREEx = {};
+// initializeDomEvents(THREE, THREEx);
+
+// console.log({initializeDomEvents})
+// console.log({THREEx})
 
 /**
  * Base
@@ -52,23 +59,23 @@ window.addEventListener('resize', () => {
 /**
  * Fullscreen
  */
-window.addEventListener('dblclick', () => {
-	const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
+// window.addEventListener('dblclick', () => {
+// 	const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
 
-	if (!fullscreenElement) {
-		if (canvas.requestFullscreen) {
-			canvas.requestFullscreen();
-		} else if (canvas.webkitRequestFullscreen) {
-			canvas.webkitRequestFullscreen();
-		}
-	} else {
-		if (document.exitFullscreen) {
-			document.exitFullscreen();
-		} else if (document.webkitExitFullscreen) {
-			document.webkitExitFullscreen();
-		}
-	}
-});
+// 	if (!fullscreenElement) {
+// 		if (canvas.requestFullscreen) {
+// 			canvas.requestFullscreen();
+// 		} else if (canvas.webkitRequestFullscreen) {
+// 			canvas.webkitRequestFullscreen();
+// 		}
+// 	} else {
+// 		if (document.exitFullscreen) {
+// 			document.exitFullscreen();
+// 		} else if (document.webkitExitFullscreen) {
+// 			document.webkitExitFullscreen();
+// 		}
+// 	}
+// });
 
 /**
  * Camera
@@ -86,9 +93,15 @@ renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.body.appendChild(renderer.domElement);
 
+var domEvents = new THREEx.DomEvents(camera, renderer.domElement);
+
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
+
+domEvents.addEventListener(mesh, 'click', function(event){
+    console.log('you clicked on the mesh')
+}, false)
 
 /**
  * Animate
