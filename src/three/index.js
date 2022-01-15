@@ -1,13 +1,17 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { THREEx } from "./threex.domevents"
+import { THREEx } from './threex.domevents';
 import './style.css';
+import configureStore from '../redux/store';
+import { changeColor } from '../redux/actions/color';
 
 // var THREEx = {};
 // initializeDomEvents(THREE, THREEx);
 
 // console.log({initializeDomEvents})
 // console.log({THREEx})
+
+const store = configureStore();
 
 /**
  * Base
@@ -99,9 +103,18 @@ var domEvents = new THREEx.DomEvents(camera, renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
-domEvents.addEventListener(mesh, 'click', function(event){
-    console.log('you clicked on the mesh')
-}, false)
+domEvents.addEventListener(
+	mesh,
+	'click',
+	function (event) {
+		if (store.getState().color.hex === '#ff0000') {
+			store.dispatch(changeColor('#4169e1'));
+		} else {
+			store.dispatch(changeColor('#ff0000'));
+		}
+	},
+	false
+);
 
 /**
  * Animate
@@ -122,3 +135,6 @@ const tick = () => {
 };
 
 tick();
+store.subscribe(() => {
+	material.color.set(store.getState().color.hex);
+});
