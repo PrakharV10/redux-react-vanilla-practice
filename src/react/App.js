@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import store from '../redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { changeColor } from '../redux/actions/color';
 
 function App() {
-	const [color, setColor] = useState(store.getState().color.hex);
+	const colorHexValue = useSelector((state) => state.color.hex);
+	const dispatch = useDispatch();
 
 	function toggleColor() {
-		color === '#ff0000'
-			? store.dispatch(changeColor('#4169e1'))
-			: store.dispatch(changeColor('#ff0000'));
+		colorHexValue === '#ff0000'
+			? dispatch(changeColor('#4169e1'))
+			: dispatch(changeColor('#ff0000'));
 	}
-
-	store.subscribe(() => setColor(store.getState().color.hex));
 
 	return (
 		<div>
 			<button onClick={toggleColor}>
-				Change to {color === '#4169e1' ? 'Red' : 'Royal Blue'}
+				Change to {colorHexValue === '#4169e1' ? 'Red' : 'Royal Blue'}
 			</button>
 		</div>
 	);
