@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { changeColor } from '../redux/actions/color';
+import { changeColor } from '../redux/features/color/color-slice';
 
 function App() {
 	const colorHexValue = useSelector((state) => state.color.hex);

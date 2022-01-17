@@ -1,5 +1,4 @@
-import configureStore from './store/configureStore';
+import initSubscriber from 'redux-subscriber';
+import { store } from './store/store';
 
-const store = configureStore();
-
-export default store;
+const subscribe = initSubscriber(store);

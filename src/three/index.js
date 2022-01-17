@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { THREEx } from './threex.domevents';
 import './style.css';
-import { changeColor } from '../redux/actions/color';
-import store from '../redux';
+import { subscribe } from 'redux-subscriber';
+import { changeColor } from '../redux/features/color/color-slice';
+import { store } from '../redux/store/store';
 
 // var THREEx = {};
 // initializeDomEvents(THREE, THREEx);
@@ -133,6 +134,6 @@ const tick = () => {
 };
 
 tick();
-store.subscribe(() => {
-	material.color.set(store.getState().color.hex);
+subscribe('color.hex', (state) => {
+	material.color.set(state.color.hex);
 });
