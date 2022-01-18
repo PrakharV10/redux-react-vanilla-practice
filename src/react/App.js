@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { changeColor } from '../redux/features/color/color-slice';
+import Button from './component/Button';
 
 function App() {
-	const colorHexValue = useSelector((state) => state.color.hex);
 	const dispatch = useDispatch();
 
 	function toggleColor() {
@@ -15,9 +14,7 @@ function App() {
 
 	return (
 		<div>
-			<button onClick={toggleColor}>
-				Change to {colorHexValue === '#4169e1' ? 'Red' : 'Royal Blue'}
-			</button>
+			<Button />
 		</div>
 	);
 }

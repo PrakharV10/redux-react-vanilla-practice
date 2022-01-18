@@ -70,6 +70,18 @@ module.exports = {
 					},
 				],
 			},
+
+			//JSX
+			{
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+				},
+			},
 		],
+	},
+	resolve: {
+		extensions: ['.ts', '.js', '.jsx'],
 	},
 };
